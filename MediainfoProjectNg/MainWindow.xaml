@@ -21,6 +21,7 @@
         <converter:ChapterLanguageToColorConverter x:Key="ChapterLanguageToColorConverter" />
         <converter:FpsModeToTextConverter x:Key="FpsModeToTextConverter" />
         <converter:FpsToTextColorConverter x:Key="FpsToTextColorConverter" />
+        <converter:AudioLanguageUndLangConverter x:Key="AudioLanguageUndLangConverter" />
     </Window.Resources>
     <Grid>
         <DockPanel>
@@ -92,12 +93,38 @@
                         <DataGridTextColumn Header="#1音轨" Binding="{Binding Path=Audio0.Format}" />
                         <DataGridTextColumn Header="位深" Binding="{Binding Path=Audio0.BitDepth}" />
                         <DataGridTextColumn Header="码率" Binding="{Binding Path=Audio0.Bitrate}" />
-                        <DataGridTextColumn Header="语言" Binding="{Binding Path=Audio0.Language}" />
+                        <DataGridTextColumn Header="语言" Binding="{Binding Path=Audio0.Language}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="BorderThickness" Value="0" />
+                                    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="False">
+                                            <Setter Property="Background"
+                                                    Value="{Binding Path=Audio0.Language, Converter={StaticResource AudioLanguageUndLangConverter}}" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
                         <DataGridTextColumn Header="默认" Binding="{Binding Path=Audio0.Default}" />
                         <DataGridTextColumn Header="#2音轨" Binding="{Binding Path=Audio1.Format}" />
                         <DataGridTextColumn Header="位深" Binding="{Binding Path=Audio1.BitDepth}" />
                         <DataGridTextColumn Header="码率" Binding="{Binding Path=Audio1.Bitrate}" />
-                        <DataGridTextColumn Header="语言" Binding="{Binding Path=Audio1.Language}" />
+                        <DataGridTextColumn Header="语言" Binding="{Binding Path=Audio1.Language}">
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="BorderThickness" Value="0" />
+                                    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="False">
+                                            <Setter Property="Background"
+                                                    Value="{Binding Path=Audio1.Language, Converter={StaticResource AudioLanguageUndLangConverter}}" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
                         <DataGridTextColumn Header="默认" Binding="{Binding Path=Audio1.Default}" />
                         <DataGridTextColumn Header="#1字幕" Binding="{Binding Path=Sub0.Format}" />
                         <DataGridTextColumn Header="语言" Binding="{Binding Path=Sub0.Language}" />
